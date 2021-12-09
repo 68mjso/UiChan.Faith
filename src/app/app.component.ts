@@ -6,11 +6,7 @@ import { merge } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 
-const log = new Logger('App');
-
-@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,10 +21,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // Setup logger
-    if (environment.production) {
-      Logger.enableProductionMode();
-    }
 
     const onNavigationEnd = this.router.events.pipe(filter((event) => event instanceof NavigationEnd));
 
@@ -44,7 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
         }),
         filter((route) => route.outlet === 'primary'),
         switchMap((route) => route.data),
-        untilDestroyed(this)
       )
       .subscribe((event) => {
         const title = event.title;
