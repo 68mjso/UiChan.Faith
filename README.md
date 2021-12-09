@@ -1,4 +1,4 @@
-# angular-ui
+# Faith-Ui
 
 This project was generated with [ngX-Rocket](https://github.com/ngx-rocket/generator-ngx-rocket/)
 version 10.0.1
