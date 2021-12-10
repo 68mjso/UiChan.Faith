@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   // Fallback when no prior route is matched
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutComponent, pathMatch: 'full', data: { animation: 'AboutPage' } },
+  { path: '', component: HomeComponent, pathMatch: 'full', data: { animation: 'HomePage' } },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

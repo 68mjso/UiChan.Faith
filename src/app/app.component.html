@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<div>
+    <div class="w-100 text-center p-4">
+        <a routerLink="/" routerLinkActive="active">Home</a>&nbsp;/&nbsp;<a routerLink="/about"
+            routerLinkActive="active">About</a>
+    </div>
+    <main [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+    </main>
+</div>
