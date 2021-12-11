@@ -68,8 +68,8 @@ export class HomeComponent implements OnInit {
       credit.style.top = "-100px";
       credit.style.left = "100px";
       credit.style.backgroundImage = `url('assets/${item}')`;
-      credit.style.backgroundSize = roll == 0?"64px 36px":"36px 36px";
-      credit.style.backgroundRepeat= "no-repeat";
+      credit.style.backgroundSize = roll == 0 ? "64px 36px" : "36px 36px";
+      credit.style.backgroundRepeat = "no-repeat";
       var left = Math.floor(Math.random() * 1920);
       credit.animate([
         {
