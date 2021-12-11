@@ -1,0 +1,23 @@
+#aboutFirst{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../../assets/Favonius_Cathedral_Interior.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.img-mc{
+    height: 90vh;
+    position: absolute;
+    bottom: 0;
+    left: -5vw;
+}
+
+.shadow-cover{
+    background: linear-gradient(to bottom,transparent 0,rgba(0,0,0,.75) 100%);
+}
+
+.welcome{
+}

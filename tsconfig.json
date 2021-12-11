@@ -41,6 +41,12 @@
       ],
       "@core/*": [
         "src/app/@core/*"
+      ],
+      "@assets": [
+        "src/assets"
+      ],
+      "@assets/*": [
+        "src/assets/*"
       ]
     }
   },

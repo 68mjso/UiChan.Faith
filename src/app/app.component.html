@@ -1,9 +1,21 @@
 <div>
-    <div class="w-100 text-center p-4">
-        <a routerLink="/" routerLinkActive="active">Home</a>&nbsp;/&nbsp;<a routerLink="/about"
-            routerLinkActive="active">About</a>
-    </div>
-    <main [@routeAnimations]="prepareRoute(outlet)">
+    <nav id="navigation" class="w-100 h-100 text-center py-4 position-fixed d-flex justify-content-end">
+        <div class="d-flex flex-column top-0 position-relative" style="width: 9.8rem;">
+            <a id="homeBlock" routerLink="/" routerLinkActive="active"
+                class="navigation-block py-3 px-4 w-100 position-absolute text-light text-decoration-none text-start">
+                <i class="fas fa-home me-3"></i>
+                <span class="text-light text-decoration-none">Home</span>
+            </a>
+            <a id="aboutBlock" routerLink="/about" routerLinkActive="active"
+                class="navigation-block py-3 px-4 w-100 position-absolute text-light text-decoration-none text-start">
+                <i class="fas fa-info-circle me-3"></i>
+                <span class="text-light text-decoration-none">About</span>
+            </a>
+        </div>
+
+    </nav>
+    <router-outlet #outlet="outlet"></router-outlet>
+    <!-- <main [@routeAnimations]="prepareRoute(outlet)">
         <router-outlet #outlet="outlet"></router-outlet>
-    </main>
+    </main> -->
 </div>
