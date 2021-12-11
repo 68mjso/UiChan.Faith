@@ -16,6 +16,8 @@ export const environment = {
   serverUrl: '/api',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
+  host: env.host,
+  apiWish: env.api_wish
 };
 
 /*
