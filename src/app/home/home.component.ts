@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
 import { ApiService } from "@app/@shared/api.service";
 import * as route from '@core/url';
-import { bounceInLeftOnEnterAnimation, fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, rubberBandOnEnterAnimation } from 'angular-animations';
-
+import { bounceInLeftOnEnterAnimation, bounceOutLeftOnLeaveAnimation, bounceInOnEnterAnimation, fadeOutAnimation } from 'angular-animations';
+import * as $ from 'jquery';
 import { startRain, createSmoke } from '@core/utilities';
 
 @Component({
@@ -11,8 +10,10 @@ import { startRain, createSmoke } from '@core/utilities';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    rubberBandOnEnterAnimation({ anchor: 'enter1', delay: 500 }),
-    bounceInLeftOnEnterAnimation({ anchor: 'enter' }),
+    bounceInLeftOnEnterAnimation({ anchor: 'formEnter' }),
+    bounceOutLeftOnLeaveAnimation({ anchor: 'formLeave' }),
+    bounceInOnEnterAnimation({ anchor: 'prayEnter' }),
+    fadeOutAnimation({ anchor: 'prayLeft' })
   ]
 })
 export class HomeComponent implements OnInit {
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.getPrayerCount();
+    // this.getPrayerCount();
   }
 
   validateInput() {
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   sendWish() {
-    if (!this.validateInput) {
+    if (!this.validateInput()) {
       return;
     }
     const url = route.url_wish;
@@ -52,25 +53,27 @@ export class HomeComponent implements OnInit {
   async getPrayerCount() {
     const response = await this.api.sendGet(route.url_wish_count);
     console.log(response);
-    if (response) {
-
-    }
   }
 
   handleWish() {
     if (!this.hasWished) {
-      startRain();
-      createSmoke();
       this.sendWish();
-      this.hideSidebar();
-      this.hasWished = true;
-    }
-  }
+      setTimeout(() => {
+        $("#prayer").animate({
+          top: "500px",
+          left: "850px",
+          opacity: 0
+        }, {
+          duration: 1000,
+        });
+        setTimeout(() => {
+          startRain();
+          createSmoke();
+        },1000);
+      }, 1000);
 
-  hideSidebar() {
-    $("#wishForm").css({
-      "left": "-400px",
-    });
+    }
+    this.hasWished = true;
   }
 
 }

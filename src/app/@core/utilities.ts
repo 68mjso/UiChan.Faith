@@ -6,7 +6,7 @@ export const createSmoke = () => {
     var canvas: any = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
 
-    var party = SmokeMachine(ctx, [133, 133, 133, 0.8]);
+    var party = SmokeMachine(ctx, [133, 133, 133, 0.9]);
 
     party.start() // start animating
 
