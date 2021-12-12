@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 })
 export class ApiService {
 
-  host: string | null = environment.host;
+  host: string = "http://osuvnfc.xyz/api";
 
   constructor(private http: HttpClient) { }
 

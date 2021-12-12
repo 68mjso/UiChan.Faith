@@ -5,6 +5,18 @@
     height: 300px;
     resize: none;
 }
+#canvasContainer{
+    position: fixed;
+    z-index: 998;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#canvas{
+    height: 200px;
+}
 #wishForm{
     left:0;
     top:0;
