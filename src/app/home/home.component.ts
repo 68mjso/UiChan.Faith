@@ -4,6 +4,8 @@ import { ApiService } from "@app/@shared/api.service";
 import * as route from '@core/url';
 import { bounceInLeftOnEnterAnimation, fadeInOnEnterAnimation, fadeOutOnLeaveAnimation, rubberBandOnEnterAnimation } from 'angular-animations';
 
+import { startRain, createSmoke } from '@core/utilities';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -17,56 +19,50 @@ export class HomeComponent implements OnInit {
 
   hasWished: boolean = false;
 
+  isInvalidInput: boolean = false;
+
   content: string = '';
+
+  prayerCount: Number = 0;
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getPrayerCount();
+  }
+
+  validateInput() {
+    if (this.content.trim() == "") {
+      this.isInvalidInput = true;
+      return false;
+    }
+    return true;
   }
 
   sendWish() {
+    if (!this.validateInput) {
+      return;
+    }
     const url = route.url_wish;
     this.api.sendPost(url, {
       content: this.content
     });
   }
 
+  async getPrayerCount() {
+    const response = await this.api.sendGet(route.url_wish_count);
+    console.log(response);
+    if (response) {
+
+    }
+  }
+
   handleWish() {
     if (!this.hasWished) {
-      var SmokeMachine = require('@bijection/smoke');
-      var canvas: any = document.getElementById('canvas');
-      var ctx = canvas.getContext('2d');
-
-      var party = SmokeMachine(ctx, [133, 133, 133, 0.8]);
-
-      party.start() // start animating
-
-      party.addSmoke(500, 500, 10) // wow we made smoke
-
-      party.setPreDrawCallback(function (dt: any) {
-        party.addSmoke(innerWidth / 2, innerHeight, .5)
-        canvas.width = innerWidth
-        canvas.height = innerHeight
-      })
-      // setTimeout(function () {
-
-      //   party.stop() // stop animating
-
-      //   party.addSmoke(600, 500, 100)
-      //   party.addSmoke(500, 600, 20)
-
-      //   for (var i = 0; i < 10; i++) {
-      //     party.step(10) // pretend 10 ms pass and rerender
-      //   }
-
-      //   setTimeout(function () {
-      //     party.start()
-      //   }, 1000)
-
-      // }, 1000)
+      startRain();
+      createSmoke();
       this.sendWish();
       this.hideSidebar();
-      this.dropAnimation();
       this.hasWished = true;
     }
   }
@@ -77,59 +73,4 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  createElement(index: Number) {
-    let item = '';
-    let roll = Math.floor(Math.random() * 3);
-    switch (roll) {
-      case 1:
-        item = "Acquaint_Fate.png";
-        break;
-      case 2:
-        item = "Intertwined_Fate.png";
-        break;
-      default:
-        item = "uichancredit.png";
-        break;
-    }
-    const left = Math.floor(Math.random() * 1920);
-    let x = left;
-    const duration = (Math.floor(Math.random() * 20) + 5) * 1000;
-    const credit = $(`<div id="item${index}"></div>`).css({
-      "position": "fixed",
-      "width": "64px",
-      "height": "36px",
-      "top": "-100px",
-      "left": `${left}px`,
-      "background-image": `url('assets/${item}')`,
-      "background-size": roll == 0 ? "64px 36px" : "36px 36px",
-      "background-repeat": "no-repeat",
-      'transform': 'rotate(0deg)'
-    }).animate({
-      top: '1080px',
-      deg: 360
-    }, {
-      duration: duration,
-      delay: Math.floor(Math.random() * 30) + 1,
-      easing: "linear",
-      // complete: this.createElement,
-      step: (now) => {
-        $(`#item${index}`).css({
-          transform: `rotate(${now}deg)`,
-        })
-      }
-    });
-    $("#effectContainer").append(credit);
-  }
-
-  dropAnimation() {
-    let count = 0;
-    let interval = setInterval(() => {
-      this.createElement(count);
-      if (count > 100) {
-        clearInterval(interval);
-      } else {
-        count++;
-      }
-    }, 500);
-  }
 }

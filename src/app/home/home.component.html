@@ -9,9 +9,10 @@
     </div>
 </div>
 <div [@enter] id="wishForm"
-    class="position-fixed bg-primary d-flex align-items-center flex-column p-3 justify-content-center position-relative shadow">
-    <div class="col-12 mb-3 d-flex justify-content-center position-absolute top-0 py-3">
+    class="position-fixed bg-primary d-flex align-items-between flex-column p-3 justify-content-center position-relative shadow">
+    <div class="col-12 mb-3 d-flex flex-column align-items-center position-absolute top-0 py-3">
         <h1 class="main-font text-light">Ui Chan</h1>
+        <h2 class="main-font text-light">Praying Service</h2>
     </div>
     <form class="w-100">
         <div class="col-12 mb-3">
@@ -22,6 +23,9 @@
             <button class="btn btn-success text-light px-3 py-2" (click)="handleWish()">Submit</button>
         </div>
     </form>
+    <div class="w-100 position-absolute bottom-0 py-3">
+        <h4 class="main-font text-light">Prayer Count:&nbsp;{{prayerCount}}</h4>
+    </div>
 </div>
 <div id="effectContainer">
 
