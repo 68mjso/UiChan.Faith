@@ -5,6 +5,28 @@
     height: 300px;
     resize: none;
 }
+#prayer{
+    position: absolute;
+    width: 160px;
+    height: 90px;
+    z-index: 999;
+    top: 300px;
+    left: 450px;
+    background-image: url('../../assets/add_prayer.png');
+    background-size: 160px 90px;
+}
+#canvasContainer{
+    position: fixed;
+    z-index: 998;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#canvas{
+    height: 200px;
+}
 #wishForm{
     left:0;
     top:0;
@@ -21,3 +43,4 @@
     background-image: url('../../assets/uichancredit.png');
     background-size: "64px 36px";
 }
+
