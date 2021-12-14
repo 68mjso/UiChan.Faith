@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    // this.getPrayerCount();
+    this.getPrayerCount();
   }
 
   validateInput() {
@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
   }
 
   async getPrayerCount() {
-    const response = await this.api.sendGet(route.url_wish_count);
-    console.log(response);
+    const response: any = await this.api.sendGet(route.url_wish_count);
+    this.prayerCount = response;
   }
 
   handleWish() {
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
         setTimeout(() => {
           startRain();
           createSmoke();
-        },1000);
+        }, 1000);
       }, 1000);
 
     }
