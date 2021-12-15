@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  host: string = "http://osuvnfc.xyz/api";
+  host: string = "http://uichan.faith";
 
   constructor(private http: HttpClient) { }
 
