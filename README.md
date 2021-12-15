@@ -1,4 +1,4 @@
-# Faith-Ui
+# UiChan.Faith
 
 Main Website: http://uichan.faith/
 
